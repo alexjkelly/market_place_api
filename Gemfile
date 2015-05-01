@@ -30,6 +30,7 @@ group :test do
 	gem 'rspec-rails', '2.99.0'
 	gem 'factory_girl_rails', '4.5.0'
 	gem 'ffaker', '2.0.0'
+	gem 'shoulda-matchers', '2.8.0'
 end
 
 # Use ActiveModel has_secure_password
