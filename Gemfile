@@ -21,6 +21,12 @@ gem 'active_model_serializers', '0.9.3'
 
 gem 'devise', '3.4.1'
 
+gem 'sabisu_rails', github: 'IcaliaLabs/sabisu-rails'
+gem 'compass-rails'
+gem 'furatto'
+gem 'font-awesome-rails'
+gem 'simple_form'
+
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', '0.4.1', require: false
