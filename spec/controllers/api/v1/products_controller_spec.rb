@@ -28,4 +28,77 @@ describe Api::V1::ProductsController do
 		it { should respond_with 200 }
 	end
 	
+	describe "POST #create" do
+		context "when successfully created" do
+			before(:each) do
+				user = FactoryGirl.create :user
+				@product_attributes = FactoryGirl.attributes_for :product
+				api_authorization_header user.auth_token
+				post :create, { user_id: user, product: @product_attributes }
+			end
+			
+			it "renders the json representation for the product just created" do
+				expect(json_response[:title]).to eql @product_attributes[:title]
+			end
+			
+			it { should respond_with 201 }
+		end
+		
+		context "when not created" do
+			before(:each) do
+				user = FactoryGirl.create :user
+				@invalid_product_attributes = { title: "Cookies", price: "Bout treefiddy" }
+				api_authorization_header user.auth_token
+				post :create, { user_id: user, product: @invalid_product_attributes }
+			end
+			
+			it "renders an errors json" do
+				expect(json_response).to have_key(:errors)
+			end
+			
+			it "renders the json errors relevant to why the product was not created" do
+				expect(json_response[:errors][:price]).to include "is not a number"
+			end
+			
+			it { should respond_with 422 }
+		end
+	end
+	
+	describe "PUT/PATCH #update" do
+		before(:each) do
+			@user = FactoryGirl.create :user
+      @product = FactoryGirl.create :product, user: @user
+      api_authorization_header @user.auth_token
+		end
+		
+		context "when successfully updated" do
+			before(:each) do
+				patch :update, { user_id: @user, id: @product, 
+												 product: { title: "New title" } }
+			end
+			
+			it "renders the json for the updated product" do
+				expect(json_response[:title]).to eql "New title"
+			end
+			
+			it { should respond_with 200 }
+		end
+		
+		context "when not updated" do
+			before(:each) do
+				patch :update, { user_id: @user, id: @product, 
+												 product: { price: "Bout treefiddy" } }
+			end
+			
+			it "renders an errors json" do
+				expect(json_response).to have_key(:errors)
+			end
+			
+			it "renders errors json relevant to error" do
+				expect(json_response[:errors][:price]).to include "is not a number"
+			end
+			
+			it { should respond_with 422 }
+		end
+	end
 end
