@@ -12,6 +12,14 @@ describe Api::V1::UsersController do
 			expect(user_response[:email]).to eql @user.email
 		end
 		
+		it "has the product ids as an embedded object" do
+			expect(json_response[:user]).to have_key(:product_ids)
+		end
+		
+		it "currently has no products" do
+			expect(json_response[:user][:product_ids]).to eql []
+		end
+		
 		it { should respond_with 200 }
 	end
 	
