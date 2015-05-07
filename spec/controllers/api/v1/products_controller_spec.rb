@@ -9,7 +9,7 @@ describe Api::V1::ProductsController do
 		end
 		
 		it "returns the information about the product" do
-			expect(json_response[:title]).to eql @product.title
+			expect(json_response[:product][:title]).to eql @product.title
 		end
 		
 		it { should respond_with 200 }
@@ -38,7 +38,7 @@ describe Api::V1::ProductsController do
 			end
 			
 			it "renders the json representation for the product just created" do
-				expect(json_response[:title]).to eql @product_attributes[:title]
+				expect(json_response[:product][:title]).to eql @product_attributes[:title]
 			end
 			
 			it { should respond_with 201 }
@@ -78,7 +78,7 @@ describe Api::V1::ProductsController do
 			end
 			
 			it "renders the json for the updated product" do
-				expect(json_response[:title]).to eql "New title"
+				expect(json_response[:product][:title]).to eql "New title"
 			end
 			
 			it { should respond_with 200 }
