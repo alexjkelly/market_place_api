@@ -17,6 +17,8 @@ describe Product do
   it { should validate_presence_of :user_id }
   
   it { should belong_to :user }
+  it { should have_many :placements }
+  it { should have_many(:orders).through :placements }
   
   describe ".filter_by_title" do
   	before(:each) do
@@ -28,7 +30,7 @@ describe Product do
   	
   	context "when a 'ABC' title pattern is sent" do
   		it "returns the 2 products matching" do
-  			expect(Product.filter_by_title("ABC")).to have(2).items
+  			expect(Product.filter_by_title("ABC").size).to eq(2)
   		end
   		
   		it "returns the products matching" do
