@@ -29,6 +29,8 @@ gem 'simple_form', '3.1.0'
 
 gem 'kaminari', '0.16.3'
 
+gem 'delayed_job_active_record', '4.0.3'
+
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', '0.4.1', require: false
