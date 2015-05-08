@@ -27,6 +27,8 @@ gem 'furatto', '1.4.0'
 gem 'font-awesome-rails', '4.3.0.0'
 gem 'simple_form', '3.1.0'
 
+gem 'kaminari', '0.16.3'
+
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', '0.4.1', require: false
