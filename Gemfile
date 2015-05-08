@@ -22,10 +22,10 @@ gem 'active_model_serializers', '0.8.3'
 gem 'devise', '3.4.1'
 
 gem 'sabisu_rails', github: 'IcaliaLabs/sabisu-rails'
-gem 'compass-rails'
-gem 'furatto'
-gem 'font-awesome-rails'
-gem 'simple_form'
+gem 'compass-rails', '2.0.1'
+gem 'furatto', '1.4.0'
+gem 'font-awesome-rails', '4.3.0.0'
+gem 'simple_form', '3.1.0'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
@@ -37,6 +37,7 @@ group :test do
 	gem 'factory_girl_rails', '4.5.0'
 	gem 'ffaker', '2.0.0'
 	gem 'shoulda-matchers', '2.8.0'
+	gem 'email_spec', '1.6.0'
 end
 
 # Use ActiveModel has_secure_password
